@@ -27,7 +27,7 @@ public class BookController {
      * @return the list
      */
     @GetMapping("/books")
-    private List<Book> getBooks() {
+    public List<Book> getBooks() {
         return bookService.getBooks();
     }
 
@@ -40,10 +40,14 @@ public class BookController {
     @GetMapping("/books/{id}")
     public ResponseEntity<Book> getBooksById(@PathVariable(value = "id") int bookId) {
         Optional<Book> book = bookService.getBook(bookId);
-        if (book.isPresent())
-            return new ResponseEntity<>(book.get(), HttpStatus.OK);
-        else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        ResponseEntity responseEntity;
+        if (book.isPresent()){
+            responseEntity = new ResponseEntity<>(book.get(), HttpStatus.OK);
+        }
+        else{
+            responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+            return responseEntity;
     }
 
     /**
@@ -69,11 +73,14 @@ public class BookController {
     public ResponseEntity<Book> updateBook(
             @PathVariable(value = "id") Integer bookId, @Valid @RequestBody Book book) {
         Optional<Book> updatedBook = bookService.updateBook(bookId, book);
-        if (updatedBook.isPresent())
-            return new ResponseEntity<>(updatedBook.get(), HttpStatus.OK);
-        else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
+        ResponseEntity responseEntity;
+        if (updatedBook.isPresent()){
+            responseEntity = new ResponseEntity<>(updatedBook.get(), HttpStatus.OK);
+        }
+        else{
+            responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return responseEntity;
     }
 
     /**

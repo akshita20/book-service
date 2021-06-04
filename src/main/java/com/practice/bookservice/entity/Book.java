@@ -1,6 +1,7 @@
 package com.practice.bookservice.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,11 +9,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "books")
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
-@Getter
+@Data
 @Builder
-@Setter
 public class Book {
 
     @Id
@@ -28,7 +26,7 @@ public class Book {
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @PrePersist

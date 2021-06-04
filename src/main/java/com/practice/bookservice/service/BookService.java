@@ -19,7 +19,6 @@ public class BookService implements IBookService{
         this.bookRepository = BookRepository;
     }
 
-
     @Override
     public List<Book> getBooks() {
         return bookRepository.findAll();
