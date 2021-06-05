@@ -2,7 +2,7 @@ package com.practice.bookservice.controller;
 
 import com.practice.bookservice.entity.Book;
 import com.practice.bookservice.service.BookService;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -46,34 +46,34 @@ class BookControllerTest {
         List<Book> books = Arrays.asList(book1, book2);
         Mockito.when(bookService.getBooks()).thenReturn(books);
         List<Book> bookResponse = bookController.getBooks();
-        Assert.assertNotNull(bookResponse.get(0));
-        Assert.assertEquals(id1, bookResponse.get(0).getId());
-        Assert.assertEquals(id2, bookResponse.get(1).getId());
-        Assert.assertEquals(author1, bookResponse.get(0).getAuthor());
-        Assert.assertEquals(name2, bookResponse.get(1).getName());
+        Assertions.assertNotNull(bookResponse.get(0));
+        Assertions.assertEquals(id1, bookResponse.get(0).getId());
+        Assertions.assertEquals(id2, bookResponse.get(1).getId());
+        Assertions.assertEquals(author1, bookResponse.get(0).getAuthor());
+        Assertions.assertEquals(name2, bookResponse.get(1).getName());
     }
 
     @Test
     void getBooksById() {
         Mockito.when(bookService.getBook(id1)).thenReturn(Optional.of(book1));
         Book bookResponse = bookController.getBooksById(1).getBody();
-        Assert.assertEquals(id1, bookResponse.getId());
-        Assert.assertEquals(author1, bookResponse.getAuthor());
-        Assert.assertEquals(name1, bookResponse.getName());
+        Assertions.assertEquals(id1, bookResponse.getId());
+        Assertions.assertEquals(author1, bookResponse.getAuthor());
+        Assertions.assertEquals(name1, bookResponse.getName());
     }
 
     @Test
     void createBook() {
         Mockito.when(bookService.createBook(book1)).thenReturn(book1);
         Book bookResponse = bookController.createBook(book1).getBody();
-        Assert.assertEquals(book1, bookResponse);
+        Assertions.assertEquals(book1, bookResponse);
     }
 
     @Test
     void updateBook() {
         Mockito.when(bookService.updateBook(id1, book1)).thenReturn(Optional.of(book1));
         Book bookResponse = bookController.updateBook(id1, book1).getBody();
-        Assert.assertEquals(book1, bookResponse);
+        Assertions.assertEquals(book1, bookResponse);
     }
 
     @Test
