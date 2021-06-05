@@ -56,7 +56,7 @@ class BookControllerTest {
     @Test
     void getBooksById() {
         Mockito.when(bookService.getBook(id1)).thenReturn(Optional.of(book1));
-        Book bookResponse = bookController.getBooksById(1).getBody();
+        Book bookResponse = bookController.getBooksById(id1).getBody();
         Assertions.assertEquals(id1, bookResponse.getId());
         Assertions.assertEquals(author1, bookResponse.getAuthor());
         Assertions.assertEquals(name1, bookResponse.getName());
