@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "books")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Builder
 public class Book {
