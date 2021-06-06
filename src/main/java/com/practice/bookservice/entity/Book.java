@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,10 +19,12 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "book_name", nullable = false)
+    @NotBlank
+    @Column(name = "book_name")
     private String name;
 
-    @Column(name = "author_name", nullable = false)
+    @NotBlank
+    @Column(name = "author_name")
     private String author;
 
     @Column(name = "created_at", nullable = false)

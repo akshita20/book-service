@@ -1,6 +1,7 @@
 package com.practice.bookservice.controller;
 
 import com.practice.bookservice.entity.Book;
+import com.practice.bookservice.exception.BookNotFoundException;
 import com.practice.bookservice.service.BookService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,12 +55,20 @@ class BookControllerTest {
     }
 
     @Test
-    void getBooksById() {
+    void getBooksById() throws BookNotFoundException {
         Mockito.when(bookService.getBook(id1)).thenReturn(Optional.of(book1));
         Book bookResponse = bookController.getBooksById(id1).getBody();
         Assertions.assertEquals(id1, bookResponse.getId());
         Assertions.assertEquals(author1, bookResponse.getAuthor());
         Assertions.assertEquals(name1, bookResponse.getName());
+    }
+
+    @Test
+    void getBooksByIdNotFound() {
+        Mockito.when(bookService.getBook(id1)).thenReturn(Optional.empty());
+        Assertions.assertThrows(BookNotFoundException.class, () -> {
+            bookController.getBooksById(id1);
+        });
     }
 
     @Test
@@ -70,10 +79,18 @@ class BookControllerTest {
     }
 
     @Test
-    void updateBook() {
+    void updateBook() throws BookNotFoundException {
         Mockito.when(bookService.updateBook(id1, book1)).thenReturn(Optional.of(book1));
         Book bookResponse = bookController.updateBook(id1, book1).getBody();
         Assertions.assertEquals(book1, bookResponse);
+    }
+
+    @Test
+    void updateBookNotFound(){
+        Mockito.when(bookService.updateBook(id1, book1)).thenReturn(Optional.empty());
+        Assertions.assertThrows(BookNotFoundException.class, () -> {
+            bookController.updateBook(id1, book1);
+        });
     }
 
     @Test
