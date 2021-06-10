@@ -1,5 +1,6 @@
 package com.practice.bookservice.entity;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -19,10 +20,12 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ApiModelProperty(value = "name of the book", required = true)
     @NotBlank
     @Column(name = "book_name")
     private String name;
 
+    @ApiModelProperty(value = "name of the author", required = true)
     @NotBlank
     @Column(name = "author_name")
     private String author;
