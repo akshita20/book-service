@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class SpringClientTestController {
 
-    @Value("${msg}")
+    @Value("${msg:Hello World from book-service}")
     private String msg;
 
     @GetMapping("/client-config")
