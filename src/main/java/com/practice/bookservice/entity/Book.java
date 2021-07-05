@@ -1,7 +1,10 @@
 package com.practice.bookservice.entity;
 
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -19,10 +22,12 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ApiModelProperty(value = "name of the book", required = true)
     @NotBlank
     @Column(name = "book_name")
     private String name;
 
+    @ApiModelProperty(value = "name of the author", required = true)
     @NotBlank
     @Column(name = "author_name")
     private String author;
