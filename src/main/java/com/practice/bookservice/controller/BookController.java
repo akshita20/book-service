@@ -7,6 +7,7 @@ import com.practice.bookservice.service.IBookService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +47,7 @@ public class BookController {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 404, message = "Book not found. ")
     })
-    @GetMapping("/books/{id}")
+    @GetMapping(value = "/books/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Book> getBooksById(
             @ApiParam(name="id", value = "The ID of the book.", required = true)
             @PathVariable(value = "id") int bookId) throws BookNotFoundException {
@@ -62,7 +63,7 @@ public class BookController {
      * @return the book response entity
      */
     @ApiOperation(value = "Creates a new book.", response = Book.class)
-    @PostMapping("/books")
+    @PostMapping(value = "/books", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Book> createBook(
             @ApiParam(name="book", value = "The book.", required = true)
             @Valid @RequestBody Book book) {
@@ -82,7 +83,7 @@ public class BookController {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 404, message = "Book not found. ")
     })
-    @PutMapping("/books/{id}")
+    @PutMapping(value ="/books/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Book> updateBook(
             @ApiParam(name="id", value = "The ID of the book.", required = true)
             @PathVariable(value = "id") Integer bookId,

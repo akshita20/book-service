@@ -1,1 +1,1 @@
-insert into books (author_name, created_at, book_name) values ('Test author',CURRENT_TIMESTAMP(),'Test Book');
+insert into books (author_name, created_at, book_name) values ('Test Author',CURRENT_TIMESTAMP(),'Test Book');
